@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-      <groupId>com.layduo</groupId>
-      <artifactId>layduo</artifactId>
-      <version>4.1.0</version>
+        <artifactId>layduo</artifactId>
+        <groupId>com.layduo</groupId>
+        <version>4.1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    
-	<artifactId>layduo-admin</artifactId>
 	<packaging>jar</packaging>
+    <artifactId>layduo-admin</artifactId>
 	
 	<description>
-		web程序入口
+	    web服务入口
 	</description>
 
-	<dependencies>
-			
-		<!-- SpringBoot集成thymeleaf模板 -->
+    <dependencies>
+    
+        <!-- SpringBoot集成thymeleaf模板 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -64,22 +62,10 @@
             <version>4.1.0</version>
         </dependency>
         
-        <!-- 定时任务-->
-        <!-- <dependency>
-            <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-quartz</artifactId>
-        </dependency> -->
-        
-        <!-- 代码生成-->
-        <!-- <dependency>
-            <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-generator</artifactId>
-        </dependency> -->
-	</dependencies>
-	
+    </dependencies>
 
-	<build>
-		<plugins>
+    <build>
+        <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -105,6 +91,6 @@
 		   </plugin>   
         </plugins>
         <finalName>${artifactId}</finalName>
-	</build>
-
+    </build>
+	
 </project>

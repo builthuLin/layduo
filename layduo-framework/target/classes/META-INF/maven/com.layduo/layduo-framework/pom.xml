@@ -73,8 +73,9 @@
 
         <!-- 系统模块-->
         <dependency>
-            <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-system</artifactId>
+            <groupId>com.layduo</groupId>
+            <artifactId>layduo-system</artifactId>
+            <version>4.1.0</version>
         </dependency>
 		
 		<!-- 获取系统信息 -->

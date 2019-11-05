@@ -10,8 +10,7 @@
   </parent>
   
   <artifactId>layduo-system</artifactId>
-  <name>layduo-system</name>
-  <url>http://maven.apache.org</url>
+ 
   <description>
   		system系统模块
   </description>
