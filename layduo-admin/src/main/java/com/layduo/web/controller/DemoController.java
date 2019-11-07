@@ -1,10 +1,14 @@
 package com.layduo.web.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.layduo.common.annotation.DataSource;
+import com.layduo.common.annotation.WebLog;
 import com.layduo.common.enums.DataSourceType;
 
 /**
@@ -13,7 +17,10 @@ import com.layduo.common.enums.DataSourceType;
  */
 @Controller
 public class DemoController {
+	
+	private static final Logger log = LoggerFactory.getLogger(DemoController.class);
 
+	//访问主数据库
 	@RequestMapping("/sayHelloByMaster")
 	@ResponseBody
 	@DataSource(value = DataSourceType.MASTER)
@@ -21,10 +28,18 @@ public class DemoController {
 		return "Master say Hello World for you!";
 	}
 	
+	//访问从数据库
 	@RequestMapping("/sayHelloBySlave")
 	@ResponseBody
 	@DataSource(value = DataSourceType.SLAVE)
 	public String sayHelloBySlave() {
 		return "Slave say Hello World for you!";
+	}
+	
+	@RequestMapping("/testWebLog/{name}")
+	@ResponseBody
+	@WebLog(description = "测试自定义注解@WebLog")
+	public String testWebLog(@PathVariable("name") String name) {
+		return "Welcome to " + name + "!";
 	}
 }
