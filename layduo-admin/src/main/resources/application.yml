@@ -109,7 +109,7 @@ shiro:
       #设置HttpOnly属性
       httpOnly: true
       #设置cookie的过期时间，单位为天
-      maxAge: 30h
+      maxAge: 30
    session:
       #session超时时间，-1代表永不过期（默认为30分钟）
       expireTime: 30

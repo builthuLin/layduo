@@ -19,7 +19,7 @@
   </modules>
   
   <properties>
-	    <ruoyi.version>4.1.0</ruoyi.version>
+	    <layduo.version>4.1.0</layduo.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
@@ -174,39 +174,25 @@
 				<version>${fastjson.version}</version>
 			</dependency>
 			
-			<!-- 定时任务-->
-			<dependency>
-				<groupId>com.ruoyi</groupId>
-				<artifactId>ruoyi-quartz</artifactId>
-				<version>${ruoyi.version}</version>
-			</dependency>
-	
-			<!-- 代码生成-->
-			<dependency>
-				<groupId>com.ruoyi</groupId>
-				<artifactId>ruoyi-generator</artifactId>
-				<version>${ruoyi.version}</version>
-			</dependency>
-			
 			<!-- 核心模块-->
 			<dependency>
-				<groupId>com.ruoyi</groupId>
-				<artifactId>ruoyi-framework</artifactId>
-				<version>${ruoyi.version}</version>
+				<groupId>com.layduo</groupId>
+				<artifactId>layduo-framework</artifactId>
+				<version>${layduo.version}</version>
 			</dependency>
 			
 	        <!-- 系统模块-->
 			<dependency>
-				<groupId>com.ruoyi</groupId>
-				<artifactId>ruoyi-system</artifactId>
-				<version>${ruoyi.version}</version>
+				<groupId>com.layduo</groupId>
+				<artifactId>layduo-system</artifactId>
+				<version>${layduo.version}</version>
 			</dependency>
 			
 			<!-- 通用工具-->
 	        <dependency>
-	            <groupId>com.ruoyi</groupId>
-	            <artifactId>ruoyi-common</artifactId>
-	            <version>${ruoyi.version}</version>
+	            <groupId>com.layduo</groupId>
+	            <artifactId>layduo-common</artifactId>
+	            <version>${layduo.version}</version>
 	        </dependency>
 		</dependencies>
 	</dependencyManagement>

@@ -9,10 +9,15 @@ import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+import com.layduo.common.constant.Constants;
 import com.layduo.common.constant.ShiroConstants;
 import com.layduo.common.exception.user.UserPasswordNotMatchException;
 import com.layduo.common.exception.user.UserPasswordRetryLimitExceedException;
+import com.layduo.common.utils.MessageUtils;
+import com.layduo.framework.manager.AsyncManager;
+import com.layduo.framework.manager.factory.AsyncFactory;
 import com.layduo.system.domain.SysUser;
 
 /**
@@ -21,6 +26,7 @@ import com.layduo.system.domain.SysUser;
  * @author layduo
  * @createTime 2019年11月8日 上午10:36:19
  */
+@Component
 public class SysPasswordService {
 
 	@Autowired
@@ -50,14 +56,17 @@ public class SysPasswordService {
 
 		// 输入密码次数超过最大值
 		if (retryCount.incrementAndGet() > Integer.valueOf(maxRetryCount)) {
+			AsyncManager.me().execute(AsyncFactory.recordLogininfor(loginName, Constants.LOGIN_FAIL, MessageUtils.message("user.password.retry.limit.exceed", maxRetryCount)));
 			throw new UserPasswordRetryLimitExceedException(Integer.valueOf(maxRetryCount).intValue());
 		}
 
 		// 用户输入密码不匹配
 		if (!matches(user, password)) {
+			AsyncManager.me().execute(AsyncFactory.recordLogininfor(loginName, Constants.LOGIN_FAIL, MessageUtils.message("user.password.retry.limit.count", retryCount)));
 			loginRecordCache.put(loginName, retryCount);
 			throw new UserPasswordNotMatchException();
-		} else {
+		} 
+		else {
 			clearLoginRecordCache(loginName);
 		}
 	}

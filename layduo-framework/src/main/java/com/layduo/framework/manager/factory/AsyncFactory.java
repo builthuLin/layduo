@@ -13,9 +13,11 @@ import org.slf4j.LoggerFactory;
 import com.layduo.common.constant.Constants;
 import com.layduo.common.utils.AddressUtils;
 import com.layduo.common.utils.ServletUtils;
+import com.layduo.common.utils.spring.SpringUtils;
 import com.layduo.framework.util.LogUtils;
 import com.layduo.framework.util.ShiroUtils;
 import com.layduo.system.domain.SysLogininfor;
+import com.layduo.system.service.impl.SysLogininforServiceImpl;
 
 import eu.bitwalker.useragentutils.UserAgent;
 
@@ -67,7 +69,7 @@ public class AsyncFactory {
 					logininfor.setStatus(Constants.FAIL);
 				}
 				//插入数据
-				//SpringUtils.getBean(SysLogininforServiceImpl.class).insertLogininfor(logininfor);
+				SpringUtils.getBean(SysLogininforServiceImpl.class).insertLogininfor(logininfor);
 			}
 		};
 	}
