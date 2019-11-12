@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import com.layduo.common.constant.Constants;
 import com.layduo.common.constant.ShiroConstants;
 import com.layduo.common.exception.user.UserPasswordNotMatchException;
+import com.layduo.common.exception.user.UserPasswordRetryLimitCountException;
 import com.layduo.common.exception.user.UserPasswordRetryLimitExceedException;
 import com.layduo.common.utils.MessageUtils;
 import com.layduo.framework.manager.AsyncManager;
@@ -39,6 +40,7 @@ public class SysPasswordService {
 
 	@PostConstruct
 	public void init() {
+		//ehcache-shiro中获取loginRecordCache
 		loginRecordCache = cacheManager.getCache(ShiroConstants.LOGINRECORDCACHE);
 	}
 
@@ -48,13 +50,13 @@ public class SysPasswordService {
 		// 使用AtomicInteger类提供原子操作，线程安全
 		AtomicInteger retryCount = loginRecordCache.get(loginName);
 
-		// 第一次查询缓存不存在，把信息缓存
+		// 为空则证明第一次输入密码，标记该账号存入缓存
 		if (retryCount == null) {
 			retryCount = new AtomicInteger(0);
 			loginRecordCache.put(loginName, retryCount);
 		}
 
-		// 输入密码次数超过最大值
+		// 如果输入密码次数超过最大允许输入密码次数，抛出限制异常
 		if (retryCount.incrementAndGet() > Integer.valueOf(maxRetryCount)) {
 			AsyncManager.me().execute(AsyncFactory.recordLogininfor(loginName, Constants.LOGIN_FAIL, MessageUtils.message("user.password.retry.limit.exceed", maxRetryCount)));
 			throw new UserPasswordRetryLimitExceedException(Integer.valueOf(maxRetryCount).intValue());
@@ -65,7 +67,9 @@ public class SysPasswordService {
 			AsyncManager.me().execute(AsyncFactory.recordLogininfor(loginName, Constants.LOGIN_FAIL, MessageUtils.message("user.password.retry.limit.count", retryCount)));
 			loginRecordCache.put(loginName, retryCount);
 			throw new UserPasswordNotMatchException();
+			//throw new UserPasswordRetryLimitCountException(retryCount.intValue());
 		} 
+		// 如果在限制次数范围内输入正确密码，则把该账号缓存信息清楚
 		else {
 			clearLoginRecordCache(loginName);
 		}
