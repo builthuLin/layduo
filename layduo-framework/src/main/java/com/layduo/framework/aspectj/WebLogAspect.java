@@ -19,6 +19,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.google.gson.Gson;
 import com.layduo.common.annotation.WebLog;
+import com.layduo.common.utils.IpUtils;
 
 /**
 * @author layduo
@@ -78,7 +79,7 @@ public class WebLogAspect {
          // 打印调用 controller 的全路径以及执行方法
          logger.info("CLass Method   : {}.{}", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
          //打印请求的IP
-         logger.info("IP             : {}", request.getRemoteAddr());
+         logger.info("IP             : {}", IpUtils.getIpAddr(request));
          //打印请求入参
          logger.info("Request Args   : {}", new Gson().toJson(joinPoint.getArgs()));
      }

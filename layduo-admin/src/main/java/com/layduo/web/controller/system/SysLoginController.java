@@ -1,4 +1,4 @@
-package com.layduo.web.controller;
+package com.layduo.web.controller.system;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

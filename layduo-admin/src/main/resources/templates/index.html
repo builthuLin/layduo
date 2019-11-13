@@ -29,7 +29,7 @@
             <ul class="nav" id="side-menu">
                 <a th:href="@{/index}">
                   <li class="logo">
-				    <span class="logo-lg" >RuoYi</span> 
+				    <span class="logo-lg" >Layduo</span> 
             	  </li>
             	</a>
             	<li>
@@ -54,20 +54,20 @@
                     </ul>
                 </li>
                 <li>
-                	<a href="#">
+                	<a>
                 		<i class="fa fa-bar-chart-o"></i>
                     	<span class="nav-label">测试菜单</span> 
                     	<span class="fa arrow"></span>
                 	</a>
                     <ul class="nav nav-second-level collapse">
 						<li>
-							<a href="#">测试页面1</a>
+							<a class="menuItem" th:href="@{/monitor/data}">数据监控</a>
 						</li>
 						<li>
-							<a href="#">测试页面2</a>
+							<a class="menuItem" th:href="@{/system/leafletmap}">地图监控</a>
 						</li>
 						<li>
-							<a href="#">测试页面3</a>
+							<a class="menuItem" th:href="@{/system/timer}">时间监控</a>
 						</li>
 					</ul>
                 </li>            
@@ -137,7 +137,7 @@
                     th:src="@{/system/main}" frameborder="0" seamless></iframe>
         </div>
         <div class="footer">
-            <div class="pull-right">© [[${copyrightYear}]] RuoYi Copyright </div>
+            <div class="pull-right">© [[${copyrightYear}]] Layduo Copyright </div>
         </div>
     </div>
     <!--右侧部分结束-->

@@ -1,4 +1,4 @@
-package com.layduo.web.controller;
+package com.layduo.web.controller.system;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -37,6 +37,18 @@ public class SysIndexController extends BaseController {
 	@GetMapping("/system/main")
 	public String main(ModelMap mmap) {
 		mmap.put("version", Global.getVersion());
-		return "main";
+		return "main_v1";
+	}
+	
+	//时间监控
+	@GetMapping("/system/timer")
+	public String timer() {
+		return "timer";
+	}
+	
+	//地图监控
+	@GetMapping("/system/leafletmap")
+	public String leafletmap() {
+		return "leafletmap";
 	}
 }

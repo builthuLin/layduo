@@ -1,4 +1,4 @@
-package com.layduo.web.controller;
+package com.layduo.web.controller.system;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

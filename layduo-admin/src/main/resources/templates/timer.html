@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style>
+		*{
+		  margin: 0;
+		  padding:0;
+		}
+		p {
+		  font-size: 60px;
+		  text-align: center;
+		}
+		p span {
+		  color: red;
+		}
+		p span.time {
+		  color: black
+		}
+		body{padding-top:200px;}
+    </style>
+	<body onload="countTime()">
+		<p>距离2020年还有</p>
+        <p><span></span></p>
+	</body>
+	<script>
+		 function countTime() {  
+             //获取当前时间  
+             var date = new Date();  
+             var startTime = date.getTime();  
+             //设置截止时间  
+             var str="2020/1/1 00:00:00";
+             var endDate = new Date(str); 
+             var endTime = endDate.getTime();  
+             
+             //时间差  
+             var leftTime = endTime - startTime; 
+             //定义变量 day,hour,minute,second保存倒计时的时间  
+             var day,hour,minute,second;  
+             if (leftTime>=0) {  
+                 day = Math.floor(leftTime / 1000 / 60 / 60 / 24);  
+                 hour = Math.floor(leftTime / 1000 /60 / 60 % 24);  
+                 minute = Math.floor(leftTime / 1000 /60 % 60);  
+                 second = Math.floor(leftTime / 1000 % 60);                     
+             }  
+			 
+			 //将倒计时赋值到div中  
+			 var showSpan = document.getElementsByTagName('span')[0];
+			 var str = day + '<span class="time">天</span>' + 
+					   hour + '<span class="time">小时</span>' + 
+					   minute + '<span class="time">分钟</span>' + 
+					   second + '<span class="time">秒</span>';
+			 showSpan.innerHTML = str;
+			 
+             //递归每秒调用countTime方法，显示动态时间效果  
+             setTimeout(countTime,1000);  
+
+        }  
+	</script>
+</html>

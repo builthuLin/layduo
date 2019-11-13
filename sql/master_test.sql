@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50646
 File Encoding         : 65001
 
-Date: 2019-11-12 18:33:35
+Date: 2019-11-13 18:54:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -91,7 +91,7 @@ CREATE TABLE `sys_logininfor` (
   `msg` varchar(255) DEFAULT '' COMMENT '提示消息',
   `login_time` datetime DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`info_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8 COMMENT='系统访问记录';
+) ENGINE=InnoDB AUTO_INCREMENT=178 DEFAULT CHARSET=utf8 COMMENT='系统访问记录';
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -157,6 +157,23 @@ INSERT INTO `sys_logininfor` VALUES ('157', 'admin', '0:0:0:0:0:0:0:1', '内网I
 INSERT INTO `sys_logininfor` VALUES ('158', 'admin', '0:0:0:0:0:0:0:1', '内网IP', 'Chrome', 'Windows 10', '1', '密码输入错误5次', '2019-11-12 17:56:43');
 INSERT INTO `sys_logininfor` VALUES ('159', 'admin', '0:0:0:0:0:0:0:1', '内网IP', 'Chrome', 'Windows 10', '1', '密码输入错误5次，帐户锁定1分钟', '2019-11-12 17:56:47');
 INSERT INTO `sys_logininfor` VALUES ('160', 'admin', '0:0:0:0:0:0:0:1', '内网IP', 'Chrome', 'Windows 10', '1', '密码输入错误5次，帐户锁定1分钟', '2019-11-12 17:56:54');
+INSERT INTO `sys_logininfor` VALUES ('161', 'admin', '0:0:0:0:0:0:0:1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2019-11-13 09:30:30');
+INSERT INTO `sys_logininfor` VALUES ('162', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2019-11-13 15:36:01');
+INSERT INTO `sys_logininfor` VALUES ('163', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '退出成功', '2019-11-13 15:38:52');
+INSERT INTO `sys_logininfor` VALUES ('164', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2019-11-13 15:39:17');
+INSERT INTO `sys_logininfor` VALUES ('165', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '退出成功', '2019-11-13 15:39:37');
+INSERT INTO `sys_logininfor` VALUES ('166', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2019-11-13 15:40:24');
+INSERT INTO `sys_logininfor` VALUES ('167', 'admin', '127.0.0.1', '内网IP', 'Microsoft Edge', 'Windows 10', '0', '登录成功', '2019-11-13 15:51:53');
+INSERT INTO `sys_logininfor` VALUES ('168', 'admin', '127.0.0.1', '内网IP', 'Microsoft Edge', 'Windows 10', '0', '登录成功', '2019-11-13 15:53:17');
+INSERT INTO `sys_logininfor` VALUES ('169', 'admin', '127.0.0.1', '内网IP', 'Microsoft Edge', 'Windows 10', '0', '登录成功', '2019-11-13 16:06:05');
+INSERT INTO `sys_logininfor` VALUES ('170', 'admin', '127.0.0.1', '内网IP', 'Microsoft Edge', 'Windows 10', '0', '登录成功', '2019-11-13 16:06:24');
+INSERT INTO `sys_logininfor` VALUES ('171', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2019-11-13 17:27:27');
+INSERT INTO `sys_logininfor` VALUES ('172', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '退出成功', '2019-11-13 17:36:40');
+INSERT INTO `sys_logininfor` VALUES ('173', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2019-11-13 17:36:58');
+INSERT INTO `sys_logininfor` VALUES ('174', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '退出成功', '2019-11-13 17:39:00');
+INSERT INTO `sys_logininfor` VALUES ('175', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2019-11-13 17:39:20');
+INSERT INTO `sys_logininfor` VALUES ('176', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '退出成功', '2019-11-13 17:42:27');
+INSERT INTO `sys_logininfor` VALUES ('177', 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2019-11-13 17:42:31');
 
 -- ----------------------------
 -- Table structure for `sys_role`
@@ -215,8 +232,31 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', '103', 'admin', '若依', '00', 'ry@163.com', '15888888888', '1', '', '29c67a30398638269fe600f73a054934', '111111', '0', '0', '0:0:0:0:0:0:0:1', '2019-11-12 17:18:41', 'admin', '2018-03-16 11:33:00', 'ry', '2019-11-12 17:18:40', '管理员');
+INSERT INTO `sys_user` VALUES ('1', '103', 'admin', 'Layduo', '00', 'ry@163.com', '15888888888', '1', '/img/userhead.jpg', '29c67a30398638269fe600f73a054934', '111111', '0', '0', '127.0.0.1', '2019-11-13 17:42:31', 'admin', '2018-03-16 11:33:00', 'ry', '2019-11-13 17:42:31', '管理员');
 INSERT INTO `sys_user` VALUES ('2', '105', 'ry', '若依', '00', 'ry@qq.com', '15666666666', '1', '', '8e6d98b90472783cc73c17047ddccf36', '222222', '0', '0', '127.0.0.1', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '测试员');
+
+-- ----------------------------
+-- Table structure for `sys_user_online`
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_user_online`;
+CREATE TABLE `sys_user_online` (
+  `sessionId` varchar(50) NOT NULL DEFAULT '' COMMENT '用户会话id',
+  `login_name` varchar(50) DEFAULT '' COMMENT '登录账号',
+  `dept_name` varchar(50) DEFAULT '' COMMENT '部门名称',
+  `ipaddr` varchar(50) DEFAULT '' COMMENT '登录IP地址',
+  `login_location` varchar(255) DEFAULT '' COMMENT '登录地点',
+  `browser` varchar(50) DEFAULT '' COMMENT '浏览器类型',
+  `os` varchar(50) DEFAULT '' COMMENT '操作系统',
+  `status` varchar(10) DEFAULT '' COMMENT '在线状态on_line在线off_line离线',
+  `start_timestamp` datetime DEFAULT NULL COMMENT 'session创建时间',
+  `last_access_time` datetime DEFAULT NULL COMMENT 'session最后访问时间',
+  `expire_time` int(5) DEFAULT '0' COMMENT '超时时间，单位为分钟',
+  PRIMARY KEY (`sessionId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='在线用户记录';
+
+-- ----------------------------
+-- Records of sys_user_online
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `sys_user_role`

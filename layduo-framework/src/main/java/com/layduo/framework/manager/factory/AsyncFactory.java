@@ -14,9 +14,12 @@ import com.layduo.common.constant.Constants;
 import com.layduo.common.utils.AddressUtils;
 import com.layduo.common.utils.ServletUtils;
 import com.layduo.common.utils.spring.SpringUtils;
+import com.layduo.framework.shiro.session.OnlineSession;
 import com.layduo.framework.util.LogUtils;
 import com.layduo.framework.util.ShiroUtils;
 import com.layduo.system.domain.SysLogininfor;
+import com.layduo.system.domain.SysUserOnline;
+import com.layduo.system.service.ISysUserOnlineService;
 import com.layduo.system.service.impl.SysLogininforServiceImpl;
 
 import eu.bitwalker.useragentutils.UserAgent;
@@ -25,6 +28,33 @@ public class AsyncFactory {
 
 	private static final Logger sys_user_logger = LoggerFactory.getLogger("sys-user");
 	
+	/**
+	 * 同步session到数据库
+	 * @param session
+	 * @return
+	 */
+	public static TimerTask syncSessionToDb(final OnlineSession session) {
+		return new TimerTask() {
+			
+			@Override
+			public void run() {
+				SysUserOnline online = new SysUserOnline();
+				online.setSessionId(String.valueOf(session.getId()));
+				online.setDeptName(session.getDeptName());
+				online.setLoginName(session.getLoginName());
+				online.setIpaddr(session.getHost());
+				online.setLoginLocation(AddressUtils.getRealAddressByIP(session.getHost()));
+				online.setBrowser(session.getBrowser());
+				online.setOs(session.getOs());
+				online.setStatus(session.getStatus());
+				online.setStartTimestamp(session.getStartTimestamp());
+				online.setLastAccessTime(session.getLastAccessTime());
+				online.setExpireTime(session.getTimeout());
+				//插入用户在线信息
+				SpringUtils.getBean(ISysUserOnlineService.class).saveOnline(online);
+			}
+		};		
+	}
 	/**
 	 * 记录登录信息
 	 * @param username 用户名
