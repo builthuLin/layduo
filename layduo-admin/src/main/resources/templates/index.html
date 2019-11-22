@@ -8,7 +8,7 @@
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
-    <link th:href="@{favicon.ico}" rel="stylesheet"/>
+    <link th:href="@{favicon.ico}" rel="shortcut icon"/>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/jquery.contextMenu.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
@@ -68,6 +68,12 @@
 						</li>
 						<li>
 							<a class="menuItem" th:href="@{/system/timer}">时间监控</a>
+						</li>
+						<li>
+							<a class="menuItem" th:href="@{/system/manager}">博客首页</a>
+						</li>
+						<li>
+						    <a class="menuItem" th:href="@{/system/pdfview}">文件预览</a>
 						</li>
 					</ul>
                 </li>            
@@ -155,6 +161,8 @@
 <script th:src="@{/ruoyi/index.js}"></script>
 <script th:src="@{/ajax/libs/fullscreen/jquery.fullscreen.js}"></script>
 <script th:inline="javascript">
+/* var user = [[${user}]];
+console.log(user); */
 var ctx = [[@{/}]];
 var skin = storage.get("skin");
 // 本地主题优先，未设置取系统配置
@@ -162,10 +170,22 @@ if($.common.isNotEmpty(skin)){
 	$("body").addClass(skin.split('|')[0]);
 	$("body").addClass(skin.split('|')[1]);
 } else {
-	var sideTheme = [[${@config.getKey('sys.index.sideTheme')}]];
-	var skinName = [[${@config.getKey('sys.index.skinName')}]];
-	$("body").addClass(sideTheme);
-	$("body").addClass(skinName);
+	var sideTheme = "sys.index.sideTheme";
+	var skinName = "sys.index.skinName";
+	$.ajax({
+        type: "GET",
+        url: ctx + "system/getThemeSkin",
+        data: {
+            "sideTheme": sideTheme,
+            "skinName": skinName
+        },
+        success: function(rdata) {
+            if (rdata.code == 0) {
+            	$("body").addClass(rdata.data.sideTheme);
+            	$("body").addClass(rdata.data.skinName);
+            }
+        }
+    });
 }
 
 /* 用户管理-重置密码 */

@@ -8,6 +8,11 @@ import com.layduo.system.service.ISysConfigService;
 /**
  * RuoYi首创 html调用 thymeleaf 实现参数管理
  * 
+ *  @config.getKey()在后台ConfigService定义, [[]]在页面上会预编译
+	var sideTheme = [[${@config.getKey('sys.index.sideTheme')}]];
+	var skinName = [[${@config.getKey('sys.index.skinName')}]];
+	$("body").addClass(sideTheme);
+	$("body").addClass(skinName);
  * @author layduo
  */
 @Service("config")

@@ -22,6 +22,7 @@ import com.layduo.common.utils.Threads;
  */
 @Component
 public class SpringSessionValidationScheduler implements SessionValidationScheduler {
+	
 	private static final Logger log = LoggerFactory.getLogger(SpringSessionValidationScheduler.class);
 
 	public static final long DEFAULT_SESSION_VALIDATION_INTERVAL = DefaultSessionManager.DEFAULT_SESSION_VALIDATION_INTERVAL;
@@ -37,6 +38,8 @@ public class SpringSessionValidationScheduler implements SessionValidationSchedu
 
 	/**
 	 * 会话验证管理器
+	 * 
+	 * @Lazy延迟加载注解，避免SpringSessionValidationScheduler和sessionManager循环依赖问题
 	 */
 	@Autowired
 	@Qualifier("sessionManager")

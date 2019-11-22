@@ -253,7 +253,7 @@ public class ShiroConfig {
         filters.put("onlineSession", onlineSessionFilter());
         filters.put("syncOnlineSession", syncOnlineSessionFilter());
         filters.put("captchaValidate", captchaValidateFilter());
-        filters.put("kickout", KickoutSessionFilter());
+        filters.put("kickout", kickoutSessionFilter());
         
         //注销成功，则跳转到指定页面
         filters.put("logout", logoutFilter());
@@ -340,7 +340,7 @@ public class ShiroConfig {
 	 * 同一个用户多设备登录限制
 	 * @return
 	 */
-	public KickoutSessionFilter KickoutSessionFilter() {
+	public KickoutSessionFilter kickoutSessionFilter() {
 		KickoutSessionFilter kickoutSessionFilter = new KickoutSessionFilter();
 		kickoutSessionFilter.setCacheManager(getEhCacheManager());
 		kickoutSessionFilter.setSessionManager(sessionManager());

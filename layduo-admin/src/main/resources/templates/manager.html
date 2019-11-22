@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="/res/layui/css/layui.css">
+  <link rel="stylesheet" type="text/css" href="/res/css/main.css">
+  <!--加载meta IE兼容文件-->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+	<style>
+		.content .cont .list-item .item .item-cont h3 .new-icon {
+	    	width: 50px;
+	    }
+	    .layui-btn-danger {
+		    background-color: #FF5722;
+		}
+		.layui-btn-success {
+			background-color: #50b74b;
+		}
+		.content .cont .list-item .item {
+			margin-bottom: 30px;
+		}
+		.content .cont .list-item .item .item-cont {
+			padding-left: 50px;
+			padding-right: 50px;
+		}
+		.content {
+			padding: 20px 0 0px 0;
+			background-color: whitesmoke;
+		}
+		.content .cont .title {
+			margin-bottom: 20px;
+		}
+		.item {
+			/*border: 1px dashed #000;*/
+		    background-color: #fff;
+		    border-radius: 1em;
+		    box-shadow: 5px 5px 8px #666; 
+		}
+		.content .cont .list-item .item .img img {
+		    height: 250px;
+		    border-radius: 1em;
+		}
+		.content .cont .list-item .item .item-cont .message-info {
+		    float: right;
+			display: block; 
+			padding:0px 0; 
+			margin-top: 25px;
+		    color: #827e7e;
+    		font-size: 12px;
+		}
+		.content .cont .list-item .item {
+			transition: All 0.4s ease-in-out;
+			-webkit-transition: All 0.4s ease-in-out;
+			-moz-transition: All 0.4s ease-in-out;
+			-o-transition: All 0.4s ease-in-out;
+		}
+		.content .cont .list-item .item:hover {
+		    transform: scale(1.03);
+		    -webkit-transform: scale(1.03);
+		    -moz-transform: scale(1.03);
+		    -o-transform: scale(1.03);
+		    -ms-transform: scale(1.03);
+		}
+		/*** guide ***/
+		.guide{width:60px;margin-left:600px;position:fixed;left:50%;bottom:20px;_position:absolute;_top:expression(documentElement.scrollTop+documentElement.clientHeight - this.clientHeight - 134+'px');display:block;}
+		.guide a{display:block;width:60px;height:50px;background:url(/res/img/sprite_v2.png) no-repeat;margin-top:10px;text-decoration:none;font:16px/50px "Microsoft YaHei";text-align:center;color:#fff;border-radius:2px;}
+		.guide a span{display:none;text-align:center;}
+		.guide a:hover{text-decoration:none;background-color:#39F;color:#fff;}
+		.guide a:hover span{display:block;width:60px;background:#39F}
+		.guide .find{background-position:-84px -236px;}
+		.guide .report{background-position:-146px -236px;}
+		.guide .edit{background-position:-83px -185px;}
+		.guide .top{background-position:-145px -185px;}
+	</style>
+</head>
+<body>
+  <div class="content">
+    <div class="cont w1000">
+      <div class="title">
+        <span class="layui-breadcrumb" lay-separator="|">
+          <a href="javascript:;" class="active">最新文章</a>
+          <a href="javascript:;">我的文章</a>
+        </span>
+      </div>
+      <div class="list-item">
+        <div class="item">
+          <div class="layui-fluid">
+            <div class="layui-row">
+              <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
+                <div class="img"><img src="/res/img/background.jpg" alt=""></div>
+              </div>
+              <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
+                <div class="item-cont">
+                  <h3>shiro--实现多项目登录访问共享session<button class="layui-btn layui-btn-success new-icon">置顶</button></h3>
+                  <h5>原创文章</h5>
+                  <p>公司需要这样的需求：有两个项目master 主项目、suiteone 项目，两个项目各自由shiro 安全框架管理，当不能登录时，都无法访问，但当登录了其中一个，再访问另一个的时候不再需要登录即可访问。</p>
+                  <div class="message-info">
+                    <i class="layui-icon layui-icon-release"> </i>  
+					<span class="create-time">2019-09-23 23:43:35</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<i class="layui-icon layui-icon-username"> </i>
+					<span class="publisher">酸奶NoSunshine</span>
+				  </div>
+                </div>
+            </div>
+            </div>
+           </div>
+        </div>
+        <div class="item">
+          <div class="layui-fluid">
+            <div class="layui-row">
+              <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
+                <div class="img"><img src="/res/img/sy_img2.jpg" alt=""></div>
+              </div>
+              <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
+                <div class="item-cont">
+                  <h3>Druid实现多数据源动态切换<button class="layui-btn layui-btn-danger new-icon">热门</button></h3>
+                  <h5>原创文章</h5>
+                  <p>前言：博文详述知识来源若依框架，可供大家一起探讨学习和分享！ 一、针对本文讲解需求，我们需要先创建两个数据库进行学习，在这里我使用的是master_test和slave_test两个库</p>
+                  <div class="message-info">
+                  	<i class="layui-icon layui-icon-release"> </i>  
+					<span class="create-time">2019-09-23 23:43:35</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<i class="layui-icon layui-icon-username"> </i>
+					<span class="publisher">酸奶NoSunshine</span>
+                  </div>
+                </div>
+            </div>
+            </div>
+           </div>
+        </div>
+        <div class="item">
+          <div class="layui-fluid">
+            <div class="layui-row">
+              <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
+                <div class="img"><img src="/res/img/sy_img3.jpg" alt=""></div>
+              </div>
+              <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
+                <div class="item-cont">
+                  <h3>SpringBoot--自定义注解 & AOP打印日志</h3>
+                  <h5>原创文章</h5>
+                  <p>前言：在开发过程中，开发人员难免会遇到打印参数输出的问题，这时候你还在一个一个打印吗？何不尝试封装一下，利用AOP通过管理日志打印。今天我们就通过自定义注解的方式，在SpringBoot中来实现AOP切面统一打印出入参数。有需要的小伙伴可以收藏一波~</p>
+                  <div class="message-info">
+                  	<i class="layui-icon layui-icon-release"> </i>  
+					<span class="create-time">2019-09-23 23:43:35</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<i class="layui-icon layui-icon-username"> </i>
+					<span class="publisher">酸奶NoSunshine</span>
+                  </div>
+                </div>
+            </div>
+            </div>
+           </div>
+        </div>
+        <div class="item">
+          <div class="layui-fluid">
+            <div class="layui-row">
+              <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
+                <div class="img"><img src="/res/img/sy_img4.jpg" alt=""></div>
+              </div>
+              <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
+                <div class="item-cont">
+                  <h3>SpringBoot--整合Shiro实现用户登录认证</h3>
+                  <h5>原创文章</h5>
+                  <p>前言：前段时间在搭建公司框架安全验证的时候，就想到之前web最火的shiro框架，所以就在空闲时间学习并总结一些搭建流程和解析，这里给大家出个简单的教程说明吧。</p>
+                  <div class="message-info">
+                  	<i class="layui-icon layui-icon-release"> </i>  
+					<span class="create-time">2019-09-23 23:43:35</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<i class="layui-icon layui-icon-username"> </i>
+					<span class="publisher">酸奶NoSunshine</span>
+                  </div>
+                </div>
+            </div>
+            </div>
+           </div>
+        </div>
+        <div class="item">
+          <div class="layui-fluid">
+            <div class="layui-row">
+              <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
+                <div class="img"><img src="/res/img/sy_img5.jpg" alt=""></div>
+              </div>
+              <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
+                <div class="item-cont">
+                  <h3>Maven+Zookeeper+Dubbo 搭建分布式项目</h3>
+                  <h5>翻译文章</h5>
+                  <p>前言：对于第一次接触分布式dubbo框架的小伙伴，可先自行了解一下dubbo的相关原理和运行机制。博主推荐一篇不错的博文，小伙伴们可以阅览后，再学习本文dubbo分布式项目搭建。</p>
+                  <div class="message-info">
+                  	<i class="layui-icon layui-icon-release"> </i>  
+					<span class="create-time">2019-09-23 23:43:35</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<i class="layui-icon layui-icon-username"> </i>
+					<span class="publisher">酸奶NoSunshine</span>
+                  </div>
+                </div>
+            </div>
+            </div>
+           </div>
+        </div>
+      </div>
+      <div id="demo" style="text-align: center;"></div>
+    </div>
+  </div>
+	<div class="guide">
+		<div class="guide-wrap">
+			<a href="#" class="edit" title="留言"><span>留言</span></a>
+			<a href="javascript:window.scrollTo(0,0)" class="top" title="回顶部"><span>回顶部</span></a>
+		</div>
+	</div>
+  <script type="text/javascript" src="/res/layui/layui.js"></script>
+  <script type="text/javascript">
+  	//初始化分页插件
+    layui.config({
+      base: '/res/js/util/'
+    }).use(['element','laypage','jquery','menu'],function(){
+      element = layui.element,laypage = layui.laypage,$ = layui.$,menu = layui.menu;
+      laypage.render({
+        elem: 'demo'
+        ,count: 70 //数据总数，每页10条，从服务端得到
+      });
+      menu.init();
+    });
+  </script>
+</body>
+</html>

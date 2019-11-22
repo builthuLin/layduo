@@ -43,6 +43,7 @@ public class OnlineSessionFilter extends AccessControlFilter {
 			return true;
 		}
 		Session session = onlineSessionDAO.readSession(subject.getSession().getId());
+		
 		if (session != null && session instanceof OnlineSession) {
 			OnlineSession onlineSession = (OnlineSession) session;
 			request.setAttribute(ShiroConstants.ONLINE_SESSION, onlineSession);
