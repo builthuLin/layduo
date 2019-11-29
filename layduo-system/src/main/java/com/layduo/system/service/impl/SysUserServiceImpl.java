@@ -118,4 +118,9 @@ public class SysUserServiceImpl implements ISysUserService {
 		return userMapper.updateUser(user);
 	}
 
+	@Override
+	public int resetUserPwd(SysUser user) {
+		return updateUserInfo(user);
+	}
+
 }

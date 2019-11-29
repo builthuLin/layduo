@@ -18,7 +18,9 @@ import com.layduo.framework.shiro.session.OnlineSession;
 import com.layduo.framework.util.LogUtils;
 import com.layduo.framework.util.ShiroUtils;
 import com.layduo.system.domain.SysLogininfor;
+import com.layduo.system.domain.SysOperLog;
 import com.layduo.system.domain.SysUserOnline;
+import com.layduo.system.service.ISysOperLogService;
 import com.layduo.system.service.ISysUserOnlineService;
 import com.layduo.system.service.impl.SysLogininforServiceImpl;
 
@@ -55,6 +57,24 @@ public class AsyncFactory {
 			}
 		};		
 	}
+	
+	/**
+	 * 记录操作日志
+	 * @param operLog
+	 * @return
+	 */
+	public static TimerTask recordOper(final SysOperLog operLog) {
+		return new TimerTask() {
+			
+			@Override
+			public void run() {
+				// 远程查询操作地点
+				operLog.setOperLocation(AddressUtils.getRealAddressByIP(operLog.getOperIp()));
+				SpringUtils.getBean(ISysOperLogService.class).insertOperlog(operLog);
+			}
+		};
+	}
+	
 	/**
 	 * 记录登录信息
 	 * @param username 用户名

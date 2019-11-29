@@ -324,7 +324,7 @@
 /** 表单验证 样式布局 **/
 label.error {
 	position: absolute;
-	right: 18px;
+	right: 28px;
 	top: 10px;
 	color: #ef392b;
 	font-size: 12px
