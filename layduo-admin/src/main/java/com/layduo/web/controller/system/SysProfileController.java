@@ -90,4 +90,38 @@ public class SysProfileController extends BaseController{
 			return error("修改密码失败，旧密码错误");
 		}
 	}
+	
+	/**
+	 * 个人信息
+	 * @param mmap
+	 * @return
+	 */
+	@GetMapping()
+	public String profile(ModelMap mmap) {
+		SysUser user = ShiroUtils.getSysUser();
+		mmap.put("user", user);
+		mmap.put("roleGroup", userService.selectUserRoleGroup(user.getUserId()));
+		mmap.put("postGroup", userService.selectUserPostGroup(user.getUserId()));
+		return prefix + "/profile";
+	}
+	
+	/**
+	 * 修改用户
+	 * @param user
+	 * @return
+	 */
+	@PostMapping("/update")
+	@ResponseBody
+	public AjaxResult update(SysUser user) {
+		SysUser currentUser = ShiroUtils.getSysUser();
+		currentUser.setUserName(user.getUserName());
+		currentUser.setEmail(user.getEmail());
+		currentUser.setPhonenumber(user.getPhonenumber());
+		currentUser.setSex(user.getSex());
+		if (userService.updateUserInfo(currentUser) > 0) {
+			ShiroUtils.setSysUser(userService.selectUserById(currentUser.getUserId()));
+			return success();
+		}
+		return error();
+	}
 }

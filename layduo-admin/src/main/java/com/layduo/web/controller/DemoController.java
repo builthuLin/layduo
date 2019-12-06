@@ -21,6 +21,7 @@ import com.layduo.web.service.UserService;
  * @createTime 2019年11月5日 下午3:21:19
  */
 @Controller
+@RequestMapping("/api")
 public class DemoController {
 	
 	private static final Logger log = LoggerFactory.getLogger(DemoController.class);

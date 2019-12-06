@@ -98,7 +98,7 @@ shiro:
       #首页地址
       indexUrl: /index
       #验证码开关
-      captchaEnabled: true
+      captchaEnabled: false
       #验证码类型: math数据计算、char字符检验
       captchaType: math
    cookie:
@@ -109,7 +109,7 @@ shiro:
       #设置HttpOnly属性
       httpOnly: true
       #设置cookie的过期时间，单位为天
-      maxAge: 30
+      maxAge: 1
    session:
       #session超时时间，-1代表永不过期（默认为30分钟）
       expireTime: 30
@@ -121,6 +121,13 @@ shiro:
       maxSession: 1
       #踢出之前登录的/之后登录的用户，默认踢出之前登陆的用户
       kickoutAfter: false
+      
+#swagger
+swagger:
+   #是否启用
+   enabled: true
+   #是否允许匿名访问
+   anonAccess: true
       
 #防止xss攻击
 xss: 

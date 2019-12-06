@@ -3,6 +3,7 @@ package com.layduo.web.controller.system;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +23,9 @@ import com.layduo.common.core.controller.BaseController;
 import com.layduo.common.core.domain.AjaxResult;
 import com.layduo.framework.util.ShiroUtils;
 import com.layduo.framework.web.service.ConfigService;
+import com.layduo.system.domain.SysMenu;
 import com.layduo.system.domain.SysUser;
+import com.layduo.system.service.ISysMenuService;
 
 /**
  * 首页 业务处理
@@ -34,14 +37,21 @@ public class SysIndexController extends BaseController {
 	
 	@Autowired
 	private ConfigService config;
+	
+	@Autowired
+	private ISysMenuService menuService;
 
 	// 系统首页
 	@GetMapping("/index")
 	public String index(ModelMap mmap) {
 		// 取身份信息
 		SysUser user = ShiroUtils.getSysUser();
+		// 根据用户id取出菜单列表
+		List<SysMenu> menus = menuService.selectMenusByUser(user);
+		mmap.put("menus", menus);
 		mmap.put("user", user);
 		mmap.put("copyrightYear", Global.getCopyrightYear());
+		mmap.put("demoEnabled", Global.isDemoEnabled());
 		return "index";
 	}
 	

@@ -1,5 +1,8 @@
 package com.layduo.framework.shiro.realm;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -11,6 +14,7 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.slf4j.Logger;
@@ -25,7 +29,10 @@ import com.layduo.common.exception.user.UserPasswordNotMatchException;
 import com.layduo.common.exception.user.UserPasswordRetryLimitExceedException;
 import com.layduo.common.utils.StringUtils;
 import com.layduo.framework.shiro.service.SysLoginService;
+import com.layduo.framework.util.ShiroUtils;
 import com.layduo.system.domain.SysUser;
+import com.layduo.system.service.ISysMenuService;
+import com.layduo.system.service.ISysRoleService;
 
 /**
  * 自定义Realm处理登录认证授权
@@ -39,13 +46,38 @@ public class UserRealm extends AuthorizingRealm {
 
 	@Autowired
 	private SysLoginService loginService;
+	
+	@Autowired
+	private ISysRoleService roleService;
+	
+	@Autowired
+	private ISysMenuService menuService;
 
 	/**
 	 * 授权
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		return null;
+		SysUser user = ShiroUtils.getSysUser();
+		// 角色列表
+        Set<String> roles = new HashSet<String>();
+        // 功能列表
+        Set<String> menus = new HashSet<String>();
+        
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        // 管理员拥有所有权限
+        if (user.isAdmin()) {
+			info.addRole("admin");
+			info.addStringPermission("*:*:*");
+		}else {
+			roles = roleService.selectRoleKeys(user.getUserId());
+			menus = menuService.selectPermsByUserId(user.getUserId());
+			// 角色加入AuthorizationInfo认证对象
+			info.setRoles(roles);
+			// 权限加入AuthorizationInfo认证对象
+			info.setStringPermissions(menus);
+		}
+		return info;
 	}
 
 	/**

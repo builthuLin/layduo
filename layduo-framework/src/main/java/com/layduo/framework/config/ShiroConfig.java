@@ -98,6 +98,9 @@ public class ShiroConfig {
 	// 权限认证失败地址
 	@Value("${shiro.user.unauthorizedUrl}")
 	private String unauthorizedUrl;
+	
+	@Value("${swagger.anonAccess}")
+	private boolean anonAccess;
 
 	@Bean
 	public EhCacheManager getEhCacheManager() {
@@ -243,11 +246,20 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/js/**", "anon");
         filterChainDefinitionMap.put("/ruoyi/**", "anon");
         filterChainDefinitionMap.put("/druid/**", "anon");
+        filterChainDefinitionMap.put("/webjars/**", "anon");
+        //过滤swagger2匿名访问
+        if (anonAccess) {
+            filterChainDefinitionMap.put("/v2/**", "anon");
+            filterChainDefinitionMap.put("/swagger-resources/**", "anon");
+            filterChainDefinitionMap.put("/swagger-ui.html", "anon");
+		}
+        //过滤验证码匿名访问
         filterChainDefinitionMap.put("/captcha/captchaImage**", "anon");
         //退出logout地址，shiro清除session
         filterChainDefinitionMap.put("/logout", "logout");
         //不需要拦截的访问
         filterChainDefinitionMap.put("/login", "anon,captchaValidate");
+        filterChainDefinitionMap.put("/api/**", "anon");
         
         Map<String, Filter> filters = new LinkedHashMap<String, Filter>();
         filters.put("onlineSession", onlineSessionFilter());
