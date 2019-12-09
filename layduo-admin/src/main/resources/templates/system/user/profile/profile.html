@@ -2,6 +2,12 @@
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" >
 <head>
 	<th:block th:include="include :: header('用户个人信息')" />
+	<style type="text/css">
+		.img-lg {
+			border: 1px solid #d0d0d0;
+			box-shadow: 3px 3px 10px;
+		}
+	</style>
 </head>
 
 <body class="gray-bg" style="font: 14px Helvetica Neue, Helvetica, PingFang SC, 微软雅黑, Tahoma, Arial, sans-serif !important;">
@@ -16,7 +22,7 @@
                 <div class="ibox-content">
                     <div class="text-center">
                         <p><img class="img-circle img-lg" th:src="(${user.avatar} == '') ? @{/img/profile.jpg} : @{${user.avatar}}"></p>
-                        <p><a href="javascript:avatar()">修改头像</a></p>
+                        <p><a href="javascript:avatar()">更改头像</a></p>
                     </div>
                     <ul class="list-group list-group-striped">
                         <li class="list-group-item"><i class="fa fa-user"></i>

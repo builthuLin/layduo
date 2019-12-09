@@ -50,6 +50,7 @@ public class SysIndexController extends BaseController {
 		List<SysMenu> menus = menuService.selectMenusByUser(user);
 		mmap.put("menus", menus);
 		mmap.put("user", user);
+		mmap.put("name", Global.getName());
 		mmap.put("copyrightYear", Global.getCopyrightYear());
 		mmap.put("demoEnabled", Global.isDemoEnabled());
 		return "index";

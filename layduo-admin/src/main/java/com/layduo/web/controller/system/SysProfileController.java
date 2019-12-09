@@ -8,14 +8,19 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.layduo.common.annotation.Log;
+import com.layduo.common.config.Global;
 import com.layduo.common.core.controller.BaseController;
 import com.layduo.common.core.domain.AjaxResult;
+import com.layduo.common.core.domain.AjaxResult.Type;
 import com.layduo.common.enums.BusinessType;
 import com.layduo.common.enums.OperatorType;
 import com.layduo.common.utils.StringUtils;
+import com.layduo.common.utils.file.FileUploadUtils;
 import com.layduo.framework.shiro.service.SysPasswordService;
 import com.layduo.framework.util.ShiroUtils;
 import com.layduo.system.domain.SysUser;
@@ -110,6 +115,7 @@ public class SysProfileController extends BaseController{
 	 * @param user
 	 * @return
 	 */
+	@Log(title = "个人信息", businessType = BusinessType.UPDATE)
 	@PostMapping("/update")
 	@ResponseBody
 	public AjaxResult update(SysUser user) {
@@ -123,5 +129,43 @@ public class SysProfileController extends BaseController{
 			return success();
 		}
 		return error();
+	}
+	
+	/**
+	 * 跳转修改头像页面
+	 * @param mmap
+	 * @return
+	 */
+	@GetMapping("/avatar")
+	public String avatar(ModelMap mmap) {
+		SysUser user = ShiroUtils.getSysUser();
+		mmap.put("user", userService.selectUserById(user.getUserId()));
+		return prefix + "/avatar";
+	}
+	
+	/**
+	 * 保存用户头像
+	 * @param file
+	 * @return
+	 */
+	@Log(title = "个人信息", businessType = BusinessType.UPDATE)
+	@PostMapping("/updateAvatar")
+	@ResponseBody
+	public AjaxResult updateAvatar(@RequestParam("avatarfile") MultipartFile file) {
+		SysUser currentUser = ShiroUtils.getSysUser();
+		try {
+			if (!file.isEmpty()) {
+				String avatar = FileUploadUtils.upload(Global.getAvatarPath(), file);
+				currentUser.setAvatar(avatar);
+				if (userService.updateUserInfo(currentUser) > 0) {
+					ShiroUtils.setSysUser(userService.selectUserById(currentUser.getUserId()));
+					return success();
+				}
+			}
+			return error();
+		} catch (Exception e) {
+			log.error("修改头像失败!", e);
+			return error(e.getMessage());
+		}
 	}
 }
