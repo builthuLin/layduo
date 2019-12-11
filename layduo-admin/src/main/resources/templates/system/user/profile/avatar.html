@@ -26,6 +26,9 @@
 <script type="text/javascript">
 var cropper;
 $(window).load(function() {
+	
+	$("html").css("overflow-y", "auto");
+	
 	var avatar = '[[${user.avatar}]]';
     var options = {
         thumbBox: '.thumbBox',

@@ -8,6 +8,7 @@ import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
+import com.alibaba.fastjson.JSON;
 import com.layduo.common.enums.OnlineStatus;
 import com.layduo.framework.manager.AsyncManager;
 import com.layduo.framework.manager.factory.AsyncFactory;
@@ -96,7 +97,21 @@ public class OnlineSessionDAO extends EnterpriseCacheSessionDAO {
 	 */
 	@Override
 	protected void doDelete(Session session) {
-		OnlineSession onlineSession = (OnlineSession) session;
+		/**
+		 * 强转容易出现两个相同的类强转类型报错 java.lang.ClassCastException
+		 * 由于引入热部署devtools包,因为ClassLoader类加载器的不同所以会导致类型转换失败
+		 * 方法1、可先判断类型是否相同
+		 * 方法2、去掉devtools依赖
+		 */
+    	OnlineSession onlineSession = null;
+		if (session instanceof OnlineSession) {
+			onlineSession = (OnlineSession) session;
+		}else {
+			//将session对象转成JSON字符串
+			String jsonStr = JSON.toJSON(session).toString();
+			//将JSON字符串转成JSON对象映射成OnlineSession
+			onlineSession = JSON.parseObject(jsonStr, OnlineSession.class);
+		}
 		if (null == onlineSession) {
 			return;
 		}

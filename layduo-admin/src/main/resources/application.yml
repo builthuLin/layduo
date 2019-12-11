@@ -69,8 +69,12 @@ spring:
    #服务模块
    devtools:
       restart:
-        #热部署开关
+        #热部署开关 在这里设置false,类加载器还会初始化，但不会监视文件更新。
         enabled: true
+        #设置重启的目录
+        #additional-paths: src/main/java
+        #classpath目录下的WEB-INF文件夹内容修改不重启
+        #exclude: WEB-INF/**
       
 #mybatis配置
 mybatis:

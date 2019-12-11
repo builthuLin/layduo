@@ -247,6 +247,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/ruoyi/**", "anon");
         filterChainDefinitionMap.put("/druid/**", "anon");
         filterChainDefinitionMap.put("/webjars/**", "anon");
+        //对上传路径暴露路径匿名访问
+        filterChainDefinitionMap.put("/profile/**", "anon");
         //过滤swagger2匿名访问
         if (anonAccess) {
             filterChainDefinitionMap.put("/v2/**", "anon");
