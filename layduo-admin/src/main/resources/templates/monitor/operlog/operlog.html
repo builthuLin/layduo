@@ -3,6 +3,18 @@
 <head>
 	<th:block th:include="include :: header('操作日志列表')" />
 	<th:block th:include="include :: bootstrap-select-css" />
+	<style type="text/css">
+		.select-datetime label {
+		    margin-top: 5px;
+		}
+		.select-datetime label, .select-datetime span, .select-datetime input {
+		    float: left;
+		}
+		.select-datetime span {
+		    display: block;
+		    margin: 5px 5px;
+		}
+	</style>
 </head>
 <body class="gray-bg">
 	<div class="container-div">
@@ -28,11 +40,11 @@
 									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
 								</select>
 							</li>
-							<li class="select-time">
+							<li class="select-datetime">
 								<label>操作时间： </label>
-								<input type="text" style="width: 200px;" class="time-input" id="startTime" placeholder="开始时间" name="params[beginTime]"/>
+								<input type="text" style="width: 200px;" class="datetime-input" id="startTime" placeholder="开始时间" name="params[beginTime]" data-type="datetime" data-format="yyyy-MM-dd HH:mm:ss"/>
 								<span>-</span>
-								<input type="text" style="width: 200px;" class="time-input" id="endTime" placeholder="结束时间" name="params[endTime]"/>
+								<input type="text" style="width: 200px;" class="datetime-input" id="endTime" placeholder="结束时间" name="params[endTime]" data-type="datetime" data-format="yyyy-MM-dd HH:mm:ss"/>
 							</li>
 							<li>
 								<a class="btn btn-primary btn-rounded btn-sm" onclick="searchPre()"><i class="fa fa-search"></i>&nbsp;搜索</a>
@@ -78,9 +90,10 @@
 		        sortName: "operTime",
 		        sortOrder: "desc",
 		        modalName: "操作日志",
-		        escape: true,
+		        escape: true, //转义HTML字符串
 		        showPageGo: true,
 		        rememberSelected: true,
+		        clickToSelect: true,
 		        columns: [{
 		        	field: 'state',
 		            checkbox: true

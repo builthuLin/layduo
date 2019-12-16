@@ -54,6 +54,7 @@ public class SysOperlogController extends BaseController{
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(SysOperLog operLog) {
+		//只对startPage()以后的第一个查询（Select）语句得到的数据进行分页
 		startPage();
 		List<SysOperLog> list = operLogService.selectOperLogList(operLog);
 		return getDataTable(list);

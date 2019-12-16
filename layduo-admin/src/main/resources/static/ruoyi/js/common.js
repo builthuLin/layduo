@@ -39,7 +39,7 @@ $(function() {
 		    var startDate = laydate.render({
 		        elem: '#startTime',
 		        max: $('#endTime').val(),
-		        theme: 'molv',
+		        theme: '#393D49',//molv
 		        trigger: 'click',
 		        done: function(value, date) {
 		            // 结束时间大于开始时间
@@ -57,7 +57,7 @@ $(function() {
 		    var endDate = laydate.render({
 		        elem: '#endTime',
 		        min: $('#startTime').val(),
-		        theme: 'molv',
+		        theme: '#393D49',//molv
 		        trigger: 'click',
 		        done: function(value, date) {
 		            // 开始时间小于结束时间
@@ -69,6 +69,66 @@ $(function() {
 		                startDate.config.max.year = '';
 		                startDate.config.max.month = '';
 		                startDate.config.max.date = '';
+		            }
+		        }
+		    });
+		});
+	}
+	//laydate 具体时分秒时间控件
+	if ($(".select-datetime").length > 0) {
+		layui.use('laydate', function() {
+		    var laydate = layui.laydate;
+		    var startDate = laydate.render({
+		        elem: '#startTime',
+		        type: 'datetime' ,
+				closeStop: '#startTime' , //这里代表的意思是：点击 test1 所在元素阻止关闭事件冒泡。如果不设定，则无法弹出控件
+				format: 'yyyy-MM-dd HH:mm:ss' ,//可任意组合
+		        theme: '#393D49',//molv
+		        trigger: 'click',
+		        max: $('#endTime').val(),
+		        done: function(value, date) {
+		            // 结束时间大于开始时间
+		            if (value !== '') {
+		                endDate.config.min.year = date.year;
+		                endDate.config.min.month = date.month - 1;
+		                endDate.config.min.date = date.date;
+		                endDate.config.min.hours = date.hours;
+		                endDate.config.min.minutes = date.minutes;
+		                endDate.config.min.seconds = date.seconds;
+		            } else {
+		                endDate.config.min.year = '';
+		                endDate.config.min.month = '';
+		                endDate.config.min.date = '';
+		                endDate.config.min.hours = '';
+		                endDate.config.min.minutes = '';
+		                endDate.config.min.seconds = '';
+		            }
+		        }
+		    });
+		    var endDate = laydate.render({
+		        elem: '#endTime',
+		        type: 'datetime' ,
+				closeStop: '#endTime' , //这里代表的意思是：点击 test1 所在元素阻止关闭事件冒泡。如果不设定，则无法弹出控件
+				format: 'yyyy-MM-dd HH:mm:ss' ,//可任意组合
+		        theme: '#393D49',//molv
+		        trigger: 'click',
+		        min: $('#startTime').val(),
+		        done: function(value, date) {
+		            // 开始时间小于结束时间
+		            if (value !== '') {
+		                startDate.config.max.year = date.year;
+		                startDate.config.max.month = date.month - 1;
+		                startDate.config.max.date = date.date;
+		                startDate.config.max.hours = date.hours;
+		                startDate.config.max.minutes = date.minutes;
+		                startDate.config.max.seconds = date.seconds;
+		            } else {
+		                startDate.config.max.year = '';
+		                startDate.config.max.month = '';
+		                startDate.config.max.date = '';
+		                startDate.config.max.hours = '';
+		                startDate.config.max.minutes = '';
+		                startDate.config.max.seconds = '';
 		            }
 		        }
 		    });
@@ -106,7 +166,7 @@ $(function() {
 				}
 				com.render({
 					elem: item,
-					theme: 'molv',
+					theme: '#393D49',//molv
 					trigger: 'click',
 					type: type,
 					format: format,
